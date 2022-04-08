@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personalized Notification Remainder">
+    <meta name="keywords" content="notification, pa, va, remainder, personal assistant, virtual assistant">
+    <meta name="author" content="BabyManisha.Sunkara">
+    <title>Mind-IT</title>
+</head>
+<body>
+    <h1>Hello, SM World!!</h1>
+    <marquee>Welcome!!</marquee>
+    <button onclick="notifyMe()">Notify Me</button>
+
+    <script>
+        function notifyMe() {
+            function shootIT() {
+                var notify = new Notification('Hi there!', {
+                    body: 'How are you doing?',
+                    icon: './icon.jpg',
+                });
+                const music = new Audio('./recipe.mp4');
+                music.play();
+            }
+            if (!window.Notification) {
+                console.log('Browser does not support notifications.');
+            } else {
+                // check if permission is already granted
+                if (Notification.permission === 'granted') {
+                    // show notification here
+                    shootIT();
+                } else {
+                    // request permission from user
+                    Notification.requestPermission().then(function (p) {
+                        if (p === 'granted') {
+                            // show notification here
+                            shootIT();
+                        } else {
+                            console.log('User blocked notifications.');
+                        }
+                    }).catch(function (err) {
+                        console.error(err);
+                    });
+                }
+            }
+        }
+     </script>
+</body>
+</html>
